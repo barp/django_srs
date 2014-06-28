@@ -1,3 +1,4 @@
 from django.contrib import admin
+from srs.models import Deck
 
-# Register your models here.
+admin.site.register(Deck)
