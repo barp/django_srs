@@ -24,7 +24,7 @@ class CardField(models.Model):
     field_name = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.field_name
+        return "%s -- %s" % (self.deck.name, self.field_name)
 
 
 class CardFieldValue(models.Model):
