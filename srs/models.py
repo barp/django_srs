@@ -5,7 +5,8 @@ from django.db import models
 
 class Deck(models.Model):
     name = models.CharField(max_length=50)
-    card_template = models.FileField()
+    card_front_template = models.FileField()
+    card_back_template = models.FileField()
 
     def __str__(self):
         return self.name
