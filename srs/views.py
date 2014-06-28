@@ -9,7 +9,7 @@ class IndexView(generic.ListView):
     context_object_name = 'decks_list'
 
     def get_queryset(self):
-        return  Deck.objects.all()
+        return Deck.objects.all()
 
 
 class DeckView(generic.DetailView):
