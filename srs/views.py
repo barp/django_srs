@@ -21,5 +21,12 @@ class CardView(generic.DetailView):
     model = Card
     template_name = "srs/card_detail.html"
 
-def new_card(request, pk):
+
+def new_deck(request):
     return HttpResponse("test")
+
+
+def new_card(request, pk):
+    deck_id = pk
+    return HttpResponse("test deck id %d" % deck_id)
+
