@@ -1,7 +1,7 @@
 {% if decks_list %}
 <ul>
     {% for deck in decks_list %}
-    <li>{{ deck.name }}</li>
+    <li><a href="{% url 'srs:deck' deck.id %}">{{ deck.name }}</a></li>
     {% endfor %}
 </ul>
 {% else %}

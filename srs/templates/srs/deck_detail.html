@@ -1,0 +1,6 @@
+{{ deck.name }}<br/>
+<ul>
+{% for card in deck.card_set.all %}
+    <li>{{ card.card_name }}</li>
+{% endfor %}
+</ul>
