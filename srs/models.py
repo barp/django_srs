@@ -2,12 +2,14 @@ from django.db import models
 
 from django.db import models
 
+
 class Deck(models.Model):
     name = models.CharField(max_length=50)
     card_template = models.FileField()
 
     def __str__(self):
         return self.name
+
 
 class Card(models.Model):
     decks = models.ForeignKey(Deck)
@@ -16,12 +18,14 @@ class Card(models.Model):
     def __str__(self):
         return self.card_name
 
+
 class CardField(models.Model):
     deck = models.ForeignKey(Deck)
     field_name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.field_name
+
 
 class CardFieldValue(models.Model):
     card = models.ForeignKey(Card)
@@ -31,9 +35,11 @@ class CardFieldValue(models.Model):
     class Meta:
         unique_together = ('card', 'field')
 
+
 class LearningState(models.Model):
     parent_deck = models.ForeignKey(Deck)
     session_number = models.PositiveSmallIntegerField()
+
 
 class LearningDeck(models.Model):
     learning_state = models.ForeignKey(LearningState)
@@ -47,6 +53,7 @@ class LearningDeck(models.Model):
         (RETIRED_DECK, "Retired Deck")
     )
     deck_type = models.CharField(max_length=3, choices=DECK_TYPES, default=CURRENT_DECK)
+
 
 class CardLearningInstance(models.Model):
     actual_card = models.ForeignKey(Card)
