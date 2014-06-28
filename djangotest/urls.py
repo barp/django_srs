@@ -6,5 +6,6 @@ urlpatterns = patterns('',
     # url(r'^$', 'djangotest.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 	url(r'polls/', include('polls.urls', namespace="polls")),
+    url(r'srs/', include('srs.urls', namespace="srs")),
     url(r'^admin/', include(admin.site.urls)),
 )
