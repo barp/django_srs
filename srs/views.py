@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import generic
-from srs.models import Deck
+from srs.models import Deck, Card
 
 
 class IndexView(generic.ListView):
@@ -15,3 +15,11 @@ class IndexView(generic.ListView):
 class DeckView(generic.DetailView):
     model = Deck
     template_name = "srs/deck_detail.html"
+
+
+class CardView(generic.DetailView):
+    model = Card
+    template_name = "srs/card_detail.html"
+
+def new_card(request, pk):
+    return HttpResponse("test")
