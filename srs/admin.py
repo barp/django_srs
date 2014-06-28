@@ -1,5 +1,6 @@
 from django.contrib import admin
 from srs.models import Deck, CardField, Card, CardFieldValue
+import django.forms as forms
 
 class CardFieldsAdmin(admin.TabularInline):
     model = CardField

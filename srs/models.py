@@ -6,13 +6,22 @@ class Deck(models.Model):
     name = models.CharField(max_length=50)
     card_template = models.FileField()
 
+    def __str__(self):
+        return self.name
+
 class Card(models.Model):
     decks = models.ForeignKey(Deck)
     card_name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.card_name
+
 class CardField(models.Model):
     deck = models.ForeignKey(Deck)
     field_name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.field_name
 
 class CardFieldValue(models.Model):
     card = models.ForeignKey(Card)
