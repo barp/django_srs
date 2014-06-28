@@ -6,8 +6,6 @@ from django.db import models, migrations
 
 class Migration(migrations.Migration):
 
-    replaces = [(b'srs', '0001_initial'), (b'srs', '0002_auto_20140628_1038'), (b'srs', '0003_cardlearningdata'), (b'srs', '0004_card_decks'), (b'srs', '0005_auto_20140628_1208'), (b'srs', '0006_auto_20140628_1209'), (b'srs', '0007_auto_20140628_1213')]
-
     dependencies = [
     ]
 
@@ -33,6 +31,28 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
+            name='CardFieldValue',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('value', models.CharField(max_length=500)),
+                ('card', models.ForeignKey(to='srs.Card')),
+                ('field', models.ForeignKey(to='srs.CardField')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='CardLearningInstance',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('actual_card', models.ForeignKey(to='srs.Card')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='Deck',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -49,33 +69,11 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(to='srs.Deck'),
             preserve_default=True,
         ),
-        migrations.CreateModel(
-            name='CardFieldValue',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('value', models.CharField(max_length=500)),
-                ('card', models.ForeignKey(to='srs.Card')),
-                ('field', models.ForeignKey(to='srs.CardField')),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
         migrations.AddField(
             model_name='card',
             name='decks',
-            field=models.ManyToManyField(to=b'srs.Deck'),
+            field=models.ForeignKey(to='srs.Deck'),
             preserve_default=True,
-        ),
-        migrations.CreateModel(
-            name='CardLearningInstance',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('actual_card', models.ForeignKey(to='srs.Card')),
-            ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='LearningDeck',
@@ -110,10 +108,5 @@ class Migration(migrations.Migration):
             name='learning_state',
             field=models.ForeignKey(to='srs.LearningState'),
             preserve_default=True,
-        ),
-        migrations.AlterField(
-            model_name='card',
-            name='decks',
-            field=models.ForeignKey(to='srs.Deck'),
         ),
     ]
