@@ -5,7 +5,7 @@ class Deck(models.Model):
     card_template = models.FileField()
 
 class Card(models.Model):
-    decks = models.ManyToManyField(Deck)
+    decks = models.ForeignKey(Deck)
     card_name = models.CharField(max_length=50)
 
 class CardField(models.Model):
