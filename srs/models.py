@@ -19,6 +19,9 @@ class CardFieldValue(models.Model):
     field = models.ForeignKey(CardField)
     value = models.CharField(max_length=500)
 
+    class Meta:
+        unique_together = ('card', 'field')
+
 class LearningState(models.Model):
     parent_deck = models.ForeignKey(Deck)
     session_number = models.PositiveSmallIntegerField()

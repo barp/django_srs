@@ -1,5 +1,5 @@
 from django.contrib import admin
-from srs.models import Deck, CardField
+from srs.models import Deck, CardField, Card, CardFieldValue
 
 class CardFieldsAdmin(admin.TabularInline):
     model = CardField
@@ -8,4 +8,12 @@ class CardFieldsAdmin(admin.TabularInline):
 class DeckAdmin(admin.ModelAdmin):
     inlines = [CardFieldsAdmin]
 
+class CardFieldValueAdmin(admin.TabularInline):
+    model = CardFieldValue
+    extra = 5
+
+class CardAdmin(admin.ModelAdmin):
+    inlines = [CardFieldValueAdmin]
+
 admin.site.register(Deck, DeckAdmin)
+admin.site.register(Card, CardAdmin)
